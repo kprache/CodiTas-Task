@@ -6,25 +6,28 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import com.coditas.model.Employee;
 
 import com.coditas.utilities.DBConnectionUtility;
 
 public class EmpDetailsService {
 
-	List getEmployeeList(int managerID, String month) {
+	public List getEmployeeList(int managerID, String month) {
 		Connection connection = DBConnectionUtility.getDBConnection();
-		List list = new ArrayList();
+		List<Employee> list = new ArrayList<Employee>();
 		try {
 			Statement statement = connection.createStatement();
 			String query = "select * from emp";
 			Statement st = connection.createStatement();
 			ResultSet rs = st.executeQuery(query);
 			while (rs.next()) {
-				list.add(rs.getInt("emp_id"));
-				list.add(rs.getString("emp_nm"));
-				list.add(rs.getString("joining_date"));
-				list.add(rs.getString("in_time"));
-				list.add(rs.getString("out_time"));
+				Employee employee = new Employee();
+				employee.setId(rs.getInt("emp_id"));
+				employee.setE_name(rs.getString("emp_nm"));
+				employee.setIn_time(rs.getString("in_time"));
+				employee.setJoining_date(rs.getString("joining_date"));
+				employee.setOut_time(rs.getString("out_time"));
+				list.add(employee);
 			}
 
 		} catch (SQLException e) {
