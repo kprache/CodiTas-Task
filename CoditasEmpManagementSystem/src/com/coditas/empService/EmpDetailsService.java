@@ -34,6 +34,10 @@ public class EmpDetailsService {
 			System.out.println(" SQLException in getEmployeeList() EmpDetailsService");
 			e.printStackTrace();
 		}
+		catch (Exception e) {
+			System.out.println("Exception in getEmployeeList() EmpDetailsService");
+			e.printStackTrace();
+		}
 		return list;
 	}
 

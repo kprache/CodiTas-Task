@@ -15,12 +15,17 @@ public class EmpDetailsController extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
-		String id = request.getParameter("manager_id");
+		String id = request.getParameter("manager");
 		String month = request.getParameter("month");
+		
+		System.out.println("id and month "+id + "" + month);
+		
 		EmpDetailsService empDetailsService = new EmpDetailsService();
 
 		List<Employee> empList = empDetailsService.getEmployeeList(Integer.parseInt(id), month);
+		
 		request.setAttribute("employeeList", empList);
+		System.out.println("emp "+empList);
 		request.getRequestDispatcher("EmployeeDetails.jsp").forward(request,
 				response);
 	}
